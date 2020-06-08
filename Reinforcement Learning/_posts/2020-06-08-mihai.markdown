@@ -1,0 +1,6 @@
+---
+layout: post
+title:  "Welcome to Mihai's Pages!"
+date:   2020-06-08 14:21:00 +0100
+---
+Here's my first post
