@@ -37,3 +37,20 @@ My code mimics exactly this behaviour. There are a two issues with the above met
 2. If the box is pushed by the robot, all samples between the last contact and the end of episode would have a reward of 0, which tells the robot that random movements give equal reward.
 
 Regardless of these, the model still managed to learn. **Why?** **How?**
+
+### Solution?
+In order to address those points, the transitions being added to the replay buffer can be stopped as soon as the goal has been reached in one of the states.
+
+ <!-- can you end episode when grasped -->
+ <!-- can you stop after hitting the box -->
+
+I've reduced the learning rate to 0.003, so it matches the paper and GitHub implementation found. By removing all transition samples after one was found successful and increasing the learning rate, the high level model overfits the data quickly because not enough new data is added to the replay memory.
+
+![High level actor loss](/assets/Parallel-processing/solution_1_loss_actor.png)
+![High level critic loss](/assets/Parallel-processing/solution_1_loss_critic.png)
+
+Another difference is that each sample, in my code, provides two entries in the replay buffer. One is the initial sample and the second one is the modified goal sample added through the transition. Slower learning rate seems to improve it.
+
+A quick test is to halve the batch size in order to see whether the loss of the critic/actor look better. I will add a metric for entries in the memory replay and compare the difference between current and before change.
+
+The number of parameters across all my networks are double the number of parameters in the HER networks. Size of high level network could be too big.
