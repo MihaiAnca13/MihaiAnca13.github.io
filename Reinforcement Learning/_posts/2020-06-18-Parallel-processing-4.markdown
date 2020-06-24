@@ -87,4 +87,3 @@ Training shows that low level is unable to learn. However, this should be identi
 ![Low level critic ref](/assets/Parallel-processing-4/0_critic_ref.png)
 ![Low level actor loss](/assets/Parallel-processing-4/0_actor_loss.png)
 ![Low level critic loss](/assets/Parallel-processing-4/0_critic_loss.png)
-
