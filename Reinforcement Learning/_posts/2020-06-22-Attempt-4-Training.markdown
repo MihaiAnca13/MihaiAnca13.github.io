@@ -39,3 +39,5 @@ After training for 53.5k episodes (per parallel process):
 ![High level accuracy](/assets/Attempt-4-training/1_accuracy.png)
 ![High level actor loss](/assets/Attempt-4-training/1_loss_actor.png)
 ![High level critic loss](/assets/Attempt-4-training/1_loss_critic.png)
+
+![Run 0](/assets/Attempt-4-training/run0.gif){: .center-image}

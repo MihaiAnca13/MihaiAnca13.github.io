@@ -32,10 +32,12 @@ X_PARAMS = {
 ~~~
 
 ### Results
-After training for x episodes:
+After training for 30k episodes:  
 ![Low level accuracy](/assets/Attempt-1-training/0_accuracy.png)
 ![Low level actor loss](/assets/Attempt-1-training/0_loss_actor.png)
 ![Low level critic loss](/assets/Attempt-1-training/0_loss_critic.png)
 ![High level accuracy](/assets/Attempt-1-training/1_accuracy.png)
 ![High level actor loss](/assets/Attempt-1-training/1_loss_actor.png)
 ![High level critic loss](/assets/Attempt-1-training/1_loss_critic.png)
+
+![Run 0](/assets/Attempt-1-training/run0.gif){: .center-image}
