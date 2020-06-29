@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Progress"
+date:   2020-06-26 08:30:00 +0100
+---
+# Results
+After training for 25k episodes (per parallel process), the arm reached an accuracy of 60% at the high level! It learned how to grasp objects or just push them in the right position. The movements were not smooth and it still failed a lot. Unfortunately, the training was stopped too late and the model over-fitted. However, here are the results:  
+![Low level accuracy](/assets/Progress/0_accuracy.png)
+![Low level actor loss](/assets/Progress/0_loss_actor.png)
+![Low level critic loss](/assets/Progress/0_loss_critic.png)
+![High level accuracy](/assets/Progress/1_accuracy.png)
+![High level actor loss](/assets/Progress/1_loss_actor.png)
+![High level critic loss](/assets/Progress/1_loss_critic.png)
+
+![Run 0 - 0](/assets/Progress/run0_0.gif)
+![Run 0 - 1](/assets/Progress/run0_1.gif)
+![Run 0 - 2](/assets/Progress/run0_2.gif)
+![Run 0 - 3](/assets/Progress/run0_3.gif)
+
+Parameters identical to 'HER' paper, except the learning rate, which was set to 1e-4 for both levels. Another training was attempted with different learning rates for each level (1e-3 for high and 1e-4 for low), however it completely failed to converge. This could be due to a bad seed, so training will be restarted.
+
+Setting learning rate of the high level to 1e-3 seems to have such big changes in gradients that the model gets stuck and generates the same action over and over. Next test is with 5e-4. Another one would be done with 1e-5. There must be a way to mitigate the random movements after the goal has been achieved. The length 1 transitions are no longer used, however, the experiences are still being added. Those experiences have current state, random action, next state (=current state), gamma=0. This rewards random behaviour, however, they cannot be completely removed. The first time (during an episode) they are added, they benefit the learning a lot. 5e-4 learning rate seems to do a better job than 1e-4. Also, 1e-5 results in bad learning.
+
+When high level is reached and the high level maintains the same action (on top of the object), the low level is stuck on a weird action that moves it away. This was being caused in the test function. Therefore, there was no impact on training.
+
+
+<!-- Grasp it with all it's might at the beginning - bad -->
+<!-- Save copy of model if high loss critic is higher than 1000 steps ago -->
