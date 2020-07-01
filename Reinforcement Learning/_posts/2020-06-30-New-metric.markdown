@@ -44,3 +44,26 @@ There are four cases which the models need to learn:
 With the current learning, at 6.6k episodes the model only managed to learn how to do the third and forth points mentioned above. However, the movements are very smooth. This means that the combination of `gamma != 0` and not stopping the episode early helped.
 
 There might have been success in the early episodes of pushing the object to the goal position on the table, however, as mentioned yesterday, the model doesn't seem to capitalize on the good examples good enough. Adaptive learning rate might help here.
+
+Unfortunatelly, the jittery movements started to re-appear and shortly after the high level critic overfitted.
+
+# Results
+After training for 11.7k episodes (per parallel process):  
+![Low level accuracy](/assets/New-metric/0_accuracy.png)
+![Low level actor loss](/assets/New-metric/0_loss_actor.png)
+![Low level critic loss](/assets/New-metric/0_loss_critic.png)
+![Low level reward](/assets/New-metric/0_reward.png)
+![High level accuracy](/assets/New-metric/1_accuracy.png)
+![High level actor loss](/assets/New-metric/1_loss_actor.png)
+![High level critic loss](/assets/New-metric/1_loss_critic.png)
+![High level reward](/assets/New-metric/1_reward.png)
+
+![Final](/assets/New-metric/final.gif){: .center-image}
+ <div>
+    <em>Final weights</em>
+ </div>{: .center-text}
+
+ ![Loss](/assets/New-metric/loss.gif){: .center-image}
+ <div>
+    <em>Weights before overfitting</em>
+ </div>{: .center-text}

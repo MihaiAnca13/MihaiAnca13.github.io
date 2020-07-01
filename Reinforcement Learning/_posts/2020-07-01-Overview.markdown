@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "Overview"
+date:   2020-07-01 08:30:00 +0100
+---
+# What's working?
+- models training in parallel
+- low level learns perfectly
+- high level achieved partial success once
+
+
+# What's not working?
+- low level over-fits
+- cannot achieve high level success consistently
+- early high level goals are outside the workspace
+
+
+# What needs to be done?
+- Low level needs to learn slower and high level needs to learn faster  
+OR
+- low level training needs to be stopped when results are satisfactory  
+AND
+- state boundaries needs to be adjusted
+
+
+# How to achieve this?
+1. Adjust learning rates. Either manually or using adaptive learning rates. Deep Learning (Goodfellow et al., 2016) book suggests Adam optimizer with linearly decreasing learning rate. There are other solutions that detect when the model hits a plateau and increases the learning rate to help escape that local optimum.  
+2. The other solution of stopping training early defeats the purpose of training both levels at the same time. In this environment a perfect low level can be achieved and would fit all high level behaviours. However, there might be cases in which the low level needs to adapt to the changes in requests of the high level. For example, high level can learn more complex behaviour over time which would require more finesse from the low level.  
+3. Adaptable thresholds. High error margins at the beginning help the models achieve the goals more easily, and, therefore, learn. However, ideally, the thresholds used would be as small as possible.
+4. Entropy as loss. In A3C, the critic's loss sometimes includes entropy. This allows the model to change the amount of noise added to the actions. This could benefit the models in this case as well.
+
+
+# Quality of life improvements
+Default parameters are currently stored in `config.py`. However, when using supercomputers, those parameters should be changeable using arguments. Moreover, the IDE (PyCharm) uses a lot of memory, therefore, the training time could be improved by running the scripts directly.
+
+# Steps
+1. Adjust state boundaries
+2. Linearly scalable learning rate  
+3. Linearly scalable thresholds
+4. Adding arguments
+5. If results are still unsatisfactory, add entropy as loss
+
+## State boundaries
+New values:
+~~~ python
+state_bounds_np = np.array([.21, .345, .175, .04])
+state_offset_np = np.array([1.29, 0.755, .625, 0])
+state_clip_low = np.array([1.08, .41, .45, -.04])
+state_clip_high = np.array([1.5, 1.10, .8, .04])
+~~~
+
+## Learning rate
+Each level now has a start, end and number of steps added to the config. The function added:
+~~~ python
+def update_lr(self, ep):
+    lr = self.lr_start - ((self.lr_start - self.lr_end) / float(self.lr_eps)) * ep
+    if lr < self.lr_end:
+        return
+
+    for param_group in self.act_opt.param_groups:
+        param_group['lr'] = lr
+
+    for param_group in self.crt_opt.param_groups:
+        param_group['lr'] = lr
+~~~
+
+## Thresholds
+Each process would now call the `update_thresholds` function inside the `HAC` class when the environments are reset.
+~~~ python
+def update_thresholds(self):
+    for i in range(len(self.high_thresholds)):
+        self.high_thresholds[i] *= self.threshold_factor
+        if self.high_thresholds[i] < self.min_high_threshold[i]:
+            self.high_thresholds[i] = self.min_high_threshold[i]
+
+    for i in range(len(self.low_thresholds)):
+        self.low_thresholds[i] *= self.threshold_factor
+        if self.low_thresholds[i] < self.min_low_threshold[i]:
+            self.low_thresholds[i] = self.min_low_threshold[i]
+~~~
+
+## Idea
+Currently, the initial state is chosen with a 50% chance. What if, as learning progresses, this chance would be reduced in favour of the normal state in which the object is on the table? Naturally, the task would become harder, but the network should be able to adapt and escape any local optimum created by the more favourable case.
