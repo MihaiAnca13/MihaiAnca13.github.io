@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Training 2"
+date:   2020-07-07 08:30:00 +0100
+---
+# Training results
+Results after 25.7k episodes (per parallel process):
+
+![Low level accuracy](/assets/Training-1/0_accuracy.png)
+![Low level actor loss](/assets/Training-1/0_loss_actor.png)
+![Low level critic loss](/assets/Training-1/0_loss_critic.png)
+![Low level reward](/assets/Training-1/0_reward.png)
+![High level accuracy](/assets/Training-1/1_accuracy.png)
+![High level actor loss](/assets/Training-1/1_loss_actor.png)
+![High level critic loss](/assets/Training-1/1_loss_critic.png)
+![High level accuracy](/assets/Training-1/1_reward.png)
+
+The accuracy went down to zero too quickly for a threshold factor of 0.9999. Upon checking the code, I've realized the thresholds were being updated twice (once per environment) per step. Therefore, at 25k episodes the high threshold already reached the minimum instead of being half of the original. For the next training, the threshold_factor would be set to 1. This would disable the overtime decrease of the thresholds and would allow the testing of the change applied yesterday regarding the final goal achieved during low level.

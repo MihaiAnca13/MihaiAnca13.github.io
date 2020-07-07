@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Training"
+date:   2020-07-06 08:30:00 +0100
+---
+# Training results
+After training for 8k episodes (per parallel process), the high level still fails to learn the desired behaviour. On the other hand, the low level seems to improve up to 80% and since threshold gets reduced over time, the accuracy slowly diminishes as well. Here are the results:
+
+![Low level accuracy](/assets/Training/0_accuracy.png)
+![Low level actor loss](/assets/Training/0_loss_actor.png)
+![Low level critic loss](/assets/Training/0_loss_critic.png)
+![Low level reward](/assets/Training/0_reward.png)
+![High level accuracy](/assets/Training/1_accuracy.png)
+![High level actor loss](/assets/Training/1_loss_actor.png)
+![High level critic loss](/assets/Training/1_loss_critic.png)
+![High level accuracy](/assets/Training/1_reward.png)
+
+Even though high accuracy decreases, the test renderings show improved behaviour: the robot is pushing or moving the box toward the right positions. This indicates there might be a bug in the accuracy calculation or in decreasing the high thresholds. At 10.9k episodes, the arm is grasping the box, but the accuracy is down to 0. This could be caused by the fact that the goal is reached while the low level is in control. In other words, the goal is reached between steps 1 and 9 of low level, and by the time high level checks, the object got moved.
+
+The loop is not stopping until all H (10) steps have been done or when the episode ends (done = True). However, if the low level would check if the high level goal is achieved, this could add some more experiences for the high level to learn from. Therefore, four goals are checked:
+- during high level:
+  - action achieved
+  - high level goal achieved
+- during low level:
+  - low level goal achieved
+  - high level goal achieved
+

@@ -4,4 +4,5 @@ title: About
 permalink: /about/
 ---
 
-Work in progess
+# Contact
+Email: mihai dot anca at bristol dot ac dot uk
