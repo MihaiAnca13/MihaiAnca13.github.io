@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Debugging"
+date:   2020-07-09 08:30:00 +0100
+---
+# Problems
+The changes implemented yesterday did not improve the learning of the high level. However, the fact that it diminished its success is weird. The changes will now be checked for errors.
+
+Also, besides the last change implemented, the polyak parameter was adjusted. Could this be the cause of the bad training? Does this parameter change require some additional hyper-parameters adjustment?
+
+A bug was found: 
+
+![Bug found](/assets/Common/bug-stop.png){: .center-image}
+
+This is Ferris from the [SLEFFY twitter](https://twitter.com/sleffy_/status/903345311996715008/photo/1) and it will help me highlight whenever a new bug is found.
+
+The variable `final_goal_during_low_level` is only reset at the beginning of the function `step`. Initially, I thought that the function doesn't exit when this is set to `True`. However, this variable is only used in the low level and reset to False with each call. 
+
+## Batch normalization
+"Input scaling: Neural networks have problems dealing with inputs of different magnitudes and therefore it is crucial to scale them properly. To this end, we rescale inputs to neural networks so that they have mean zero and standard deviation equal to one and then clip them to the range [−5,5]. Means and standard deviations used for rescaling are computed using all the observations encountered so far in the training."
+
+By having a look at the HER paper, I remembered I completely forgot about implementing batch normalization.
+
+"In a batch-normalized model, we have been able to achieve a training speed-up from higher learning rates, with no ill side effects" — Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift, 2015. This would explain why they've been able to use a lr of 1e-3. I am curious whether adding a BatchNorm layer at the beginning of the network would do the trick.
+
+Unfortunately, this won't work because samples are sometimes being processed one by one, therefore the new layer won't be able to compute anything. Based on the HER implementation by OpenAI, a new class will be added:
+
+~~~ python
+class Normalizer:
+    def __init__(self, clip_range=np.array([-5, 5])):
+        self.sum = 0
+        self.count = 0
+        self.mean = 0
+        self.std = 1
+        self.clip_range = clip_range
+
+    def recompute(self, batch):
+        self.sum += batch.sum()
+        self.count += len(batch)
+        self.mean = self.sum / self.count
+        self.std = np.sqrt(np.mean(abs(batch - self.mean)**2))
+
+    def normalize(self, v):
+        self.recompute(v)
+        return torch.clamp((v - self.mean) / self.std, self.clip_range[0], self.clip_range[1])
+
+    def denormalize(self, v):
+        return self.mean + v * self.std
+~~~
+
+The idea is to update the mean and std every time a new batch is passed through the neural network. But then, how is the normalizer initialized so that the model can start collecting samples? Can the state boundaries be used to set the initial values? Since those boundaries are known, should the normalizer have pre-set values rather then updating them on the fly?
+
