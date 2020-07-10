@@ -27,26 +27,52 @@ Unfortunately, this won't work because samples are sometimes being processed one
 
 ~~~ python
 class Normalizer:
-    def __init__(self, clip_range=np.array([-5, 5])):
-        self.sum = 0
-        self.count = 0
-        self.mean = 0
-        self.std = 1
+    def __init__(self, size, clip_range=np.array([-5, 5]), eps=1e-3):
+        self.sum = np.zeros(size, dtype=np.float32)
+        self.sum_squares = np.zeros(size, dtype=np.float32)
+        self.count = np.zeros(1, dtype=np.int)
+        self.mean = np.zeros(size, dtype=np.float32)
+        self.std = np.zeros(size, dtype=np.float32)
+        self.size = size
         self.clip_range = clip_range
+        self.eps = eps
+        self.lock = mp.Lock()
 
     def recompute(self, batch):
-        self.sum += batch.sum()
-        self.count += len(batch)
-        self.mean = self.sum / self.count
-        self.std = np.sqrt(np.mean(abs(batch - self.mean)**2))
+        with self.lock:
+            self.sum += batch.sum(axis=0).numpy()
+            self.sum_squares += torch.square(batch).sum(axis=0).numpy()
+            self.count += len(batch)
+            self.mean = self.sum / self.count
+            self.std = np.sqrt(np.maximum(np.square(self.eps), self.sum_squares / self.count - np.square(self.mean)))
 
     def normalize(self, v):
         self.recompute(v)
         return torch.clamp((v - self.mean) / self.std, self.clip_range[0], self.clip_range[1])
 
     def denormalize(self, v):
-        return self.mean + v * self.std
+        return self.mean + v.numpy() * self.std
 ~~~
 
 The idea is to update the mean and std every time a new batch is passed through the neural network. But then, how is the normalizer initialized so that the model can start collecting samples? Can the state boundaries be used to set the initial values? Since those boundaries are known, should the normalizer have pre-set values rather then updating them on the fly?
 
+Moreover, in the OpenAI implementation, the update was done across multiple threads so that all data can be commonly used and create a better representation.
+
+In order to address the initialization question, the test environment would be ran randomly for a couple of episodes to generate enough samples to start with. 
+
+Another thing to consider is the fact that the observations have different number of dimensions for high and low level. Some axis would be shared, but is it worth going into the complexity of cherry picking axis when each level could have its own normalizer? Actually, there is observation size, goal size and action size. Listing all of them:
+- full observation - size 25
+- position - size 3
+- action (position + gripper state) - size 4
+
+Maybe cherry picking axis is not a bad idea after all. If going for this approach, the normalizer would have to be called by the DDPG object, since it will contain the information required for choosing the axis. This variable should make it easier: 
+~~~ python
+AXIS_CHOICES = {'25': None, '4': [0, 1 ,2 ,9], '3': [0, 1, 2]}
+~~~
+
+Normalization would take place for both actor and critic, therefore the normalizer needs to be accessible in both training and data gathering. However, the same data should not be considered twice. Therefore, the call to the `recompute` function would have to be manually done. The training only accesses data from the replay memory, therefore, if during data gathering, all samples are normalized before being saved, there is no need to call the normalizer during training. This means that each HAC agent would need to have access to the normalizer.
+
+Because the actions are being taken as inputs for the critic, they would have to be normalized as well. The actions are not part of observations, so the samples needs to be concatenated to the observations being used for the initialization of the normalizer. Also, this means that the `AXIS_CHOICES` variable is no longer useful in that form. This is because both low level and high level actions have the same shape. Here's the new one:
+~~~ python
+AXIS_CHOICES = {'full': None, 'pos_state': [0, 1 ,2 ,9], 'pos': [0, 1, 2], 'action': [-4, -3, -2, -1]}
+~~~
