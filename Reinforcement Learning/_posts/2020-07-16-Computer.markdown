@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "Computer"
+date:   2020-07-16 08:30:00 +0100
+---
+
+# Problems
+
+Unfortunately, I am unable to connect to my computer any more. This could be due to a power cut which shut it down completely. The alternative will be to run the scripts on the BlueCrystal4 super computer provided by the university.
+
+## Preparations
+
+The script does not require any major modifications since it's already working in parallel and arguments provide an easy way to change configuration. The major libraries installed are mujoco_py and pytorch. Mujoco simulator requires a license key that is linked to a computer.
+
+### Super computer ID
+Since the super computer is made of multiple computers connected together the job submitted will not always run on the same clusters. This, unfortunately, makes it impossible for a license key to be used. 
+
+## Alternatives
+
+One alternative would be to look for a similar simulator which is free or even open source. Unfortunately, this will require a lot of modifications on the current environment. This is because the original pick and place environment provided by the `gym` library is using mujoco at its core. The environment settings and possible commands will have to be ported.
+
+The "Bullet" physics engine comes up a lot in discussions as a free alternative to Mujoco. However, in "Simulation Tools for Model-Based Robotics: Comparison of Bullet, Havok, MuJoCo, ODE and PhysX" [1], the simulator of choice for grasping is ODE. Luckily, this engine is free to use. However, I cannot find a Python compatible version. On the other hand, Bullet was built for Python.
+
+This will take a lot of time. 
+
+1. Erez, T., Tassa, Y. and Todorov, E., 2015, May. Simulation tools for model-based robotics: Comparison of bullet, havok, mujoco, ode and physx. In 2015 IEEE international conference on robotics and automation (ICRA) (pp. 4397-4404). IEEE.
