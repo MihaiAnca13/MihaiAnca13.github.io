@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "Papers"
+date:   2020-07-17 08:30:00 +0100
+---
+
+# Reading
+1. Zeng, A., Song, S., Lee, J., Rodriguez, A. and Funkhouser, T., 2020. Tossingbot: Learning to throw arbitrary objects with residual physics. IEEE Transactions on Robotics.
+
+## Notes
+Grasping success is determined by distance between fingers when gripper is performing full grasp.
+
+Self-supervision is the equivalent of Hindsight exerience replay.
