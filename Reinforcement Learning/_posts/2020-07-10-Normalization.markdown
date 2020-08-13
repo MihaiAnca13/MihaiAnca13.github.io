@@ -23,4 +23,4 @@ After fixing all the obvious bugs, the training started, however after 1.2k epis
 
 ![Bug found](/assets/Common/bug-stop.png){: .center-image}
 
-The `test_env.action_space.sample()` returns values between -1 and 1 for the action, however, the actions are bound between -0.05 and 0.05. In order to fix this, the actions will be sampled based on action boundaries set in the constructor.
+The `test_env.action_space.sample()` returns values between -1 and 1 for the action, however, the actions are bound between -0.05 and 0.05. In order to fix this, the actions will be sampled based on action boundaries set in the constructor (just like in the agent).
