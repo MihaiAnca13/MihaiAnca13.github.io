@@ -55,6 +55,10 @@ jointPositions = [1.076, 0.060, 0.506, -2.020, -0.034, 2.076, 2.384, 0.03, 0.03]
 
 Next steps are adding support for actions when calling `step` and adding a rendering option. The latter will probably have to be done with some other tools since the `DIRECT` mode is the main one used for speed during training. This means that the normal view-port will not be usable.
 
+The simulator and library work like a server and API. However, I cannot disconnect from direct mode and into GUI, because the states saved in memory are getting erased on disconnect.
+
+Being said that, can the simulator have multiple processes in parallel? It seems to be working if two scripts are started, however, how am I supposed to get two instanced running under the same process? Here's the answer: `from pybullet_utils import bullet_client as bc` ([source](https://github.com/bulletphysics/bullet3/blob/master/examples/pybullet/gym/pybullet_utils/examples/multipleScenes.py)).
+
 <!-- ![Low level accuracy](/assets/Benefits-of-Normalization/0_accurac.png)
 ![Low level actor loss](/assets/Benefits-of-Normalization/0_loss_actor.png)
 ![Low level critic loss](/assets/Benefits-of-Normalization/0_loss_critic.png)
