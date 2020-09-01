@@ -35,6 +35,13 @@ This was solved by changing the following line:
 os.environ['OMP_NUM_THREADS'] = "1" # change 1 to number of processes + 1 (number of HAC agent + 1 thread for the test environment)
 ~~~
 
+*Note*: CPU in BlueCrystal means cpu core, therefore a total of 25 were requested: 1 per environment spawned (16), 1 per simulator thread (8) and finally 1 for the main script.
+
+# Develop High Only
+Now that the training is on the job list, it's time to reduce the complexity even more. Since the low level learns quite easily, the problem can be reduced to a simple DDPG training of the high level. This is what develop-high-only branch will be about.
+
+
+
 <!-- ![Low level accuracy](/assets/Benefits-of-Normalization/0_accurac.png)
 ![Low level actor loss](/assets/Benefits-of-Normalization/0_loss_actor.png)
 ![Low level critic loss](/assets/Benefits-of-Normalization/0_loss_critic.png)
