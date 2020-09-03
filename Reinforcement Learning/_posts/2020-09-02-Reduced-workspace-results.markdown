@@ -95,6 +95,9 @@ Old version seems better.
 # Training in the background progress
 ![Gif](/assets/Reduced-workspace-results/run1.gif)
 
+![Accuracy](/assets/Reduced-workspace-results/accuracy_s.png)
+![Actor loss](/assets/Reduced-workspace-results/loss_actor_s.png)
+![Critic loss](/assets/Reduced-workspace-results/loss_critic_s.png)
 <!-- ![Low level accuracy](/assets/Benefits-of-Normalization/0_accurac.png)
 ![Low level actor loss](/assets/Benefits-of-Normalization/0_loss_actor.png)
 ![Low level critic loss](/assets/Benefits-of-Normalization/0_loss_critic.png)
