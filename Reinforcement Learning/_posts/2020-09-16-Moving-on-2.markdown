@@ -1,0 +1,40 @@
+---
+layout: post
+title:  "Moving on 2"
+date:   2020-09-16 08:30:00 +0100
+---
+<!-- ![Bug found](/assets/Common/bug-stop.png){: .center-image} -->
+# Transitioning toward Data Parallelism
+Reiterating the steps required:
+
+## Steps required for transition to data parallelism
+1. Replay buffer no longer shared
+2. Networks copy shared and updated periodically - every 400 frames
+3. Remove queue
+4. Move grad calculation to model.py
+5. Sampling the buffer has to be done in parallel using a mp.Process and a queue of size 2. Therefore, each time a sample is consumed, another one is prepared in advance. Batch size is 256
+6. Sending of data is done the same way, using a queue, that is emptied when filled. batch size = 50
+7. Gradient clipping between -1 and 1
+
+Params: 
+- Prioritized replay buffer params: `alpha = 0.6, beta = 0.4`
+- replay buffer size of 1 mil, allowing overflow, gets trimmed every 100 steps (using alpha evict of -0.4? - maybe not worth the hassle initially since comparison hasn't been studied in paper)
+
+## Actual steps?
+Upon starting to work on the steps mentioned above, I've realised that the replay memory still has to be shared. However, not between the learner and the actor, but between the actor and it's own queue. Each HAC agent will create it's own small replay buffer and share the memory with it, so that the function that handles the sending of data can run in parallel.
+
+Once again, I have to correct my belief. The big replay memory is shared between all processes. This allows each process to add experiences to it once the local replay buffer is filled. Then, periodically, the buffer is clamped. The local replay buffers are only shared between each process and it's own thread that handles the queue.
+
+<!-- |  |   |   |   |   |
+:-:|:-:|:-:|:-:|:-:|
+![Low level accuracy](/assets/Getting-close/0_accuracy.png) | ![Low level actor loss](/assets/Getting-close/0_loss_actor.png) | ![Low level critic loss](/assets/Getting-close/0_loss_critic.png) | ![Low level reward](/assets/Getting-close/0_reward.png)
+![High level accuracy](/assets/Getting-close/1_accuracy.png) | ![High level actor loss](/assets/Getting-close/1_loss_actor.png) | ![High level critic loss](/assets/Getting-close/1_loss_critic.png) | ![High level accuracy](/assets/Getting-close/1_reward.png)
+
+![Gif](/assets/Getting-close/run0.gif) -->
+
+
+<!-- ![Accuracy](/assets/Reduced-workspace-results/accuracy.png)
+![Actor loss](/assets/Reduced-workspace-results/loss_actor.png)
+![Critic loss](/assets/Reduced-workspace-results/loss_critic.png)
+
+![Gif](/assets/Reduced-workspace-results/run0.gif) -->
