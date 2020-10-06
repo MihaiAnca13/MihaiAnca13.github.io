@@ -40,6 +40,15 @@ net.act_opt.step()
 ~~~
 
 ## Working on poster
+Areas:
+1. Methodology/Description
+2. Results/Conclusion + Graph
+3. High level description
+4. Problem complexity
+5. Low level description
+6. Robot/Environment description
+7. Demonstration
+8. Applying on real robot
 
 <!-- |  |   |   |   |   |
 :-:|:-:|:-:|:-:|:-:|
