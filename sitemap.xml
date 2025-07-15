@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>/2021-02-04-twin-delayed-hierarchical-actor-critic/</loc>
+<loc>https://mihaianca13.github.io/2021-02-04-twin-delayed-hierarchical-actor-critic/</loc>
 <lastmod>2021-02-04T00:00:00+01:00</lastmod>
 </url>
 <url>
-<loc>/2021-11-22-multi-lingual-agents/</loc>
+<loc>https://mihaianca13.github.io/2021-11-22-multi-lingual-agents/</loc>
 <lastmod>2021-11-22T00:00:00+01:00</lastmod>
 </url>
 <url>
-<loc>/2022-02-24-achieving-goals/</loc>
+<loc>https://mihaianca13.github.io/2022-02-24-achieving-goals/</loc>
 <lastmod>2022-02-24T00:00:00+01:00</lastmod>
 </url>
 <url>
-<loc>/2023-06-20-modular-hrl-for-robotics/</loc>
+<loc>https://mihaianca13.github.io/2023-06-20-modular-hrl-for-robotics/</loc>
 <lastmod>2023-06-20T00:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>/aboutme/</loc>
+<loc>https://mihaianca13.github.io/aboutme/</loc>
 </url>
 <url>
-<loc>/</loc>
+<loc>https://mihaianca13.github.io/</loc>
 </url>
 <url>
-<loc>/sideprojects/</loc>
+<loc>https://mihaianca13.github.io/sideprojects/</loc>
 </url>
 </urlset>
