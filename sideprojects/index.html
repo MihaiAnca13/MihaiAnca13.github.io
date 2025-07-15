@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Side Projects</title>
+
+  
+  <meta name="author" content="Mihai Anca">
+  
+
+  <meta name="description" content="# PDF layout for card printing - 2025 I made a tool written in C++ designed to create print-ready PDF files from a collection of card images. It arranges the images in a grid on one or more pages, with support for front and back sides, customizable borders, bleed areas,...">
+
+  
+
+  
+  <meta name="keywords" content="mihai,anca,phd,robotics,ai,reinforcement learning,rl">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/custom-styles.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Mihai Anca, PhD">
+  <meta property="og:title" content="Side Projects">
+  <meta property="og:description" content="# PDF layout for card printing - 2025 I made a tool written in C++ designed to create print-ready PDF files from a collection of card images. It arranges the images in a grid on one or more pages, with support for front and back sides, customizable borders, bleed areas,...">
+
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/sideprojects/">
+  <link rel="canonical" href="/sideprojects/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Side Projects">
+  <meta property="twitter:description" content="# PDF layout for card printing - 2025 I made a tool written in C++ designed to create print-ready PDF files from a collection of card images. It arranges the images in a grid on one or more pages, with support for front and back sides, customizable borders, bleed areas,...">
+
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  <div id="particle-container">
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="">Mihai Anca, PhD</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutme">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sideprojects">Side Projects</a>
+          </li></ul>
+  </div>
+
+  
+
+  
+
+</nav>
+
+
+
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="page-heading">
+          <h1>Side Projects</h1>
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+      
+
+      <h1 id="pdf-layout-for-card-printing---2025">PDF layout for card printing - 2025</h1>
+
+<p>I made a tool written in C++ designed to create print-ready PDF files from a collection of card images. It arranges the images in a grid on one or more pages, with support for front and back sides, customizable borders, bleed areas, and cutting guide lines. It uses raylib for rendering, clay for the UI and libharu for creating the PDF.</p>
+
+<p><img src="/assets/side-projects/cardapp.png" alt="cardapp.png" />
+I even made my first release on GitHub. Have a look at the <a href="https://github.com/MihaiAnca13/CardPDFGenerator">repo</a></p>
+
+<h1 id="the-rulebook---rag-for-board-game-rules---2025">The Rulebook - RAG for board game rules - 2025</h1>
+
+<p>I built a Django app that lets users ask questions about board game rules. It uses <code class="language-plaintext highlighter-rouge">nomic-embed-text-v1.5</code> for embeddings, <code class="language-plaintext highlighter-rouge">pgvector</code> for similarity search, and a locally hosted <code class="language-plaintext highlighter-rouge">LLaMA 3.2 3B</code> model for answers. PDFs are parsed and chunked with NLTK, and new game requests are handled automatically each night via Airflow.</p>
+
+<p><img src="/assets/side-projects/TheRulebook.png" alt="TheRulebook.png" /></p>
+
+<h1 id="boardgame-data-analysis---2024">Boardgame data analysis - 2024</h1>
+
+<p>I explored the data behind the scoring of boardgames in the hope to find the perfect combination of mechanics and categories. Read about what I’ve found <a href="https://medium.com/@mihai.anca13/the-perfect-board-game-recipe-unveiling-the-data-e26dfbb46b2e">here</a>.</p>
+
+<p><img src="/assets/side-projects/Untitled.webp" alt="Untitled" /></p>
+
+<h1 id="multi-threaded-wave-function-collapse">Multi-threaded Wave Function Collapse</h1>
+
+<p>I’ve tried the WFC algorithm and parallelised it in a new way using multi-threading by checking for conflicts after each worker finished propagating changes. The code is constrained to always generate circle-shaped landmasses like these:</p>
+
+<div class="media-grid">
+	<div class="media-item"><img src="/assets/side-projects/Screenshot_2023-06-19_184321.png" alt="screenshot1" /></div>
+	<div class="media-item"><img src="/assets/side-projects/Screenshot_2023-06-19_184322.png" alt="screenshot2" /></div>
+</div>
+
+<div class="media-grid">
+	<div class="media-item"><img src="/assets/side-projects/Screenshot_2023-06-19_184323.png" alt="screenshot" /></div>
+	<div class="media-item"><img src="/assets/side-projects/output_c.png" alt="output_c" /></div>
+</div>
+
+<p><a href="https://github.com/MihaiAnca13/waveFunctionCollapse">link</a></p>
+
+<h1 id="medium-post---2023">Medium post - 2023</h1>
+
+<p>Exploring OpenGL + PhysX + PyTorch, all in C++ - my first Medium post 🎆.</p>
+
+<p>I have created a project that uses OpenGL to render a ball simulated with PhysX. The ball is controlled by a reinforcement learning agent trained with PyTorch. Its objective is to navigate a 3D scene created in Blender.</p>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe src="https://www.youtube.com/embed/NjLcRKWCZjE" width="700" height="480" frameborder="0" allowfullscreen="true">
+  </iframe>
+</div>
+
+<p><a href="https://medium.com/@mihai.anca13/exploring-opengl-physx-and-pytorch-all-in-c-8d8308a89cc6">link</a> - <a href="https://github.com/MihaiAnca13/GLPhysXRL">repo</a></p>
+
+<h1 id="global-game-jam---2023">Global Game Jam - 2023</h1>
+
+<p>Theme: Roots! We made an isometric tower defense game in Unity where you start as a tree and you have to grow a forest around you to protect against the incoming waves of zombie rabbits! You place trees that come with turrets of three different types. There are two different resources that can be used to either grow or upgrade the trees/turrets. The zombies are spawning from increasingly more points until the trees are finally overwhelmed. My part included:</p>
+
+<ul>
+  <li>smooth camera movement</li>
+  <li>procedurally generated roots</li>
+  <li>scripting the AI waves</li>
+  <li>integrating everything at the end</li>
+</ul>
+
+<p><img src="/assets/side-projects/ezgif-frame-006.jpg" alt="ezgif-frame-006.jpg" loading="lazy" /></p>
+
+<details>
+  <summary>Gameplay</summary>
+
+  <img src="/assets/side-projects/ezgif-frame-010.jpg" alt="ezgif-frame-010.jpg" loading="lazy" />
+  <img src="/assets/side-projects/ezgif-frame-019.jpg" alt="ezgif-frame-019.jpg" loading="lazy" />
+  <img src="/assets/side-projects/ezgif-frame-040.jpg" alt="ezgif-frame-040.jpg" loading="lazy" />
+  <img src="/assets/side-projects/ezgif-frame-113.jpg" alt="ezgif-frame-113.jpg" loading="lazy" />
+
+</details>
+
+<h1 id="learning-rust---2022">Learning Rust - 2022</h1>
+
+<p>I’ve taken the Hands-On Game Development with Rust course from Educative.io. It helped me learn more about game development rather than rust, but it was a fun side-project. <a href="https://drive.google.com/file/d/1wwbrWZQvmBsOVcWMY--zA2QaeOtYDqM4/view?usp=sharing">Here</a>’s the dungeon crawler game that came out:</p>
+
+<p><img src="/assets/side-projects/Untitled.png" alt="Untitled" /></p>
+
+<h1 id="cycling---2022">Cycling - 2022</h1>
+
+<p><img src="/assets/side-projects/WhatsApp_Image_2022-07-31_at_8.33.33_PM.jpeg" alt="WhatsApp Image 2022-07-31 at 8.33.33 PM.jpeg" /></p>
+
+<p>Last year, I did a “long” 82 km cycling trip and I ended up soaked and could barely feel my butt. This year, I decided to do it better! Here’s my story from a 5.5 km daily commute to a one-day 160km trip in pictures:</p>
+
+<details>
+  <summary>51 mins - 13.7 km</summary>
+  <img src="/assets/side-projects/Untitled%201.png" alt="Untitled 1" />
+  <img src="/assets/side-projects/294372816_2939152243044062_3292927548332599410_n.jpg" alt="294372816" />
+</details>
+
+<details>
+  <summary>2h 6min (3h with breaks) - 35.4 km</summary>
+  <img src="/assets/side-projects/Untitled%202.png" alt="Untitled 2" />
+  <img src="/assets/side-projects/294404919_405948768020379_6167395300728162462_n.jpg" alt="294404919" />
+</details>
+
+<details>
+  <summary>3h 17min (4h with breaks) - 57 km</summary>
+  <img src="/assets/side-projects/Untitled%203.png" alt="Untitled 3" />
+  <img src="/assets/side-projects/293719436_1064514450847145_3869808138399886333_n.jpg" alt="293719436" />
+</details>
+
+<details>
+  <summary>5h (6.5h with breaks) - 95 km</summary>
+  <img src="/assets/side-projects/Untitled%204.png" alt="Untitled 4" />
+  <img src="/assets/side-projects/294057293_709461733687910_6760318934326707133_n.jpg" alt="294057293" />
+</details>
+
+<details>
+  <summary>5h 38 mins (8h with breaks) - 96.9 km (super hilly!)</summary>
+  <img src="/assets/side-projects/Untitled%205.png" alt="Untitled 5" />
+  <img src="/assets/side-projects/294306412_1109881879607508_5034092621269033045_n.jpg" alt="294306412" />
+</details>
+
+<details>
+  <summary>8h 7 min (including breaks) - 124 km</summary>
+  <img src="/assets/side-projects/Untitled%206.png" alt="Untitled 6" />
+  <p>I didn’t take any pictures on this one, so here’s one from Google:</p>
+  <img src="/assets/side-projects/Untitled%207.png" alt="Untitled 7" />
+</details>
+
+<details>
+  <summary>Approx 12h (with breaks) - 141 km. Started in New Port for this one, and as you can tell by the time, it was extremely hilly!</summary>
+  <img src="/assets/side-projects/Untitled%208.png" alt="Untitled 8" />
+  <p>My favourite scenery this challenge!</p>
+  <img src="/assets/side-projects/294292569_1224837238330428_5699773956636070018_n.jpg" alt="294292569" />
+</details>
+
+<details>
+  <summary>First failed attempt at 160km (2 punctures and mud everywhere!). The blue line is my friend rescuing me 🤦.</summary>
+  <img src="/assets/side-projects/Untitled%209.png" alt="Untitled 9" />
+  <img src="/assets/side-projects/294036817_790483049000989_4225758215931811390_n.jpg" alt="294036817" />
+</details>
+
+<details>
+  <summary>The final boss! 11h - 164km. It was a ♾️ long journey but so satisfying!</summary>
+  <img src="/assets/side-projects/WhatsApp_Image_2022-07-28_at_6.26.38_PM.jpeg" alt="WhatsApp 1" />
+  <img src="/assets/side-projects/WhatsApp_Image_2022-07-31_at_8.24.04_PM.jpeg" alt="WhatsApp 2" />
+</details>
+
+<h1 id="blender---2022">Blender - 2022</h1>
+
+<details open="">
+  <summary>View renders</summary>
+
+  <div class="media-full">
+    <img src="/assets/side-projects/landscape.png" alt="landscape" />
+  </div>
+
+  <div class="media-grid">
+    <div class="media-item">
+      <video controls="">
+        <source src="/assets/side-projects/lay_robot.mov" type="video/quicktime" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="media-item">
+      <video controls="">
+        <source src="/assets/side-projects/flower_dance.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div class="media-grid">
+    <div class="media-item"><img src="/assets/side-projects/rug_chair.png" alt="rug chair" /></div>
+    <div class="media-item"><img src="/assets/side-projects/horse.png" alt="horse" /></div>
+  </div>
+
+  <div class="media-75">
+    <img src="/assets/side-projects/275686510_1015151569208307_8798006483059078923_n.jpg" alt="decor" />
+  </div>
+
+  <div class="media-grid">
+    <div class="media-item">
+      <video controls="">
+        <source src="/assets/side-projects/beads.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="media-item">
+      <video controls="">
+        <source src="/assets/side-projects/vase.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <div class="media-grid">
+    <div class="media-item"><img src="/assets/side-projects/proximity_light.png" alt="proximity light" /></div>
+    <div class="media-item">
+      <video controls="">
+        <source src="/assets/side-projects/proximity.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <h2>Catan – 2022</h2>
+  <p>3D printed and painted my own Catan board game. Personally designed the cards using free online assets.</p>
+
+  <table>
+    <tr style="border: none">
+      <td style="border: none"><img src="/assets/side-projects/brick.png" alt="Brick" width="100" /></td>
+      <td style="border: none"><img src="/assets/side-projects/ore.png" alt="Ore" width="100" /></td>
+      <td style="border: none"><img src="/assets/side-projects/sheep.png" alt="Sheep" width="100" /></td>
+      <td style="border: none"><img src="/assets/side-projects/wheat.png" alt="Wheat" width="100" /></td>
+      <td style="border: none"><img src="/assets/side-projects/wood.png" alt="Wood" width="100" /></td>
+    </tr>
+  </table>
+
+  <div class="media-full">
+    <img src="/assets/side-projects/275770573_649160816340970_1566438085508428379_n.jpg" alt="catan setup" />
+  </div>
+
+</details>
+
+<h1 id="cave-explorer---2021">Cave explorer - 2021</h1>
+
+<p>Part of the developing team for the RoC-Ex: Robotic Cave Explorer game during the UK Festival of Robotics 2021. Play it <a href="https://www.farscope.bris.ac.uk/game">here</a>!</p>
+
+<h1 id="autonomous-car---2019">Autonomous Car - 2019</h1>
+
+<p>Third-year undergraduate project.</p>
+
+<p><img src="/assets/side-projects/car.jpg" alt="car.jpg" /></p>
+
+<h1 id="robot-wars---2018">Robot Wars - 2018</h1>
+
+<p>Awarded second place in a local university competition.</p>
+
+<p><img src="/assets/side-projects/IMG_20170225_161018.jpg" alt="IMG_20170225_161018.jpg" /></p>
+
+
+      
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="mailto:mihai.anca13@gmail.com" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/MihaiAnca13" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Mihai Anca
+        &nbsp;&bull;&nbsp;
+      
+      2025
+
+      
+
+      
+
+      
+
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
